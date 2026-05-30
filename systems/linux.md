@@ -394,6 +394,42 @@ ssh-copy-id user@serveur                # Copier sa clé publique sur un serveur
 ssh user@serveur -p 2222                # Se connecter sur un port spécifique
 ```
 
+### Gestion SSH Avancée
+```bash
+ssh-keygen -t ed25519 -C "user@host"    # Générer clé moderne (ED25519)
+ssh-copy-id -i ~/.ssh/id_ed25519.pub user@serveur  # Copier clé
+ssh -i ~/.ssh/id_ed25519 user@serveur   # Utiliser clé spécifique
+ssh user@serveur -p 2222               # Connexion sur port personnalisé
+
+# Configuration SSH avancée (~/.ssh/config)
+Host monserveur
+    HostName 192.168.1.100
+    User ubuntu
+    IdentityFile ~/.ssh/id_ed25519
+    Port 2222
+    IdentitiesOnly yes
+```
+
+### Tâches Planifiées (Cron)
+```bash
+# Éditer la crontab
+crontab -e
+
+# Lister les tâches cron
+crontab -l
+
+# Format : minute heure jour mois jour_semaine commande
+# Exemples:
+0 2 * * *       /usr/bin/backup.sh          # Chaque jour à 2h
+*/15 * * * *    /usr/bin/task.sh            # Toutes les 15 min
+0 0 1 * *       /usr/bin/monthly.sh         # 1er du mois à minuit
+0 9-17 * * 1-5  /usr/bin/business.sh        # Jours ouvrables 9h-17h
+
+# Variable utile
+MAILTO=admin@example.com    # Recevoir logs
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+```
+
 ### Sécurité Rapide
 ```bash
 last                                    # Voir les dernières connexions

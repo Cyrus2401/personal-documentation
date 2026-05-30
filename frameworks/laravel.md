@@ -143,6 +143,208 @@ Schema::table('users', function (Blueprint $table) {
 });
 ```
 
+## Relations Eloquent
+
+### Définition des Relations
+```php
+// One-to-Many
+class User extends Model {
+    public function posts() {
+        return $this->hasMany(Post::class);
+    }
+}
+
+// Many-to-One (inverse)
+class Post extends Model {
+    public function author() {
+        return $this->belongsTo(User::class);
+    }
+}
+
+// Many-to-Many
+class User extends Model {
+    public function roles() {
+        return $this->belongsToMany(Role::class);
+    }
+}
+
+// Has-Many-Through
+class Country extends Model {
+    public function users() {
+        return $this->hasManyThrough(User::class, Region::class);
+    }
+}
+```
+
+### Chargement des Relations (Eager Loading)
+```php
+// Évite le problème N+1 requêtes
+$users = User::with('posts', 'roles')->get();
+
+// Eager loading conditionnel
+$users = User::with(['posts' => function($query) {
+    $query->where('published', true)->limit(5);
+}])->get();
+
+// Lazy eager loading
+$users = User::all();
+$users->load('posts');
+```
+
+### Opérations sur Relations
+```php
+// Créer en passant par la relation
+$user->posts()->create(['title' => 'Nouveau post']);
+
+// Détacher/Attacher (Many-to-Many)
+$user->roles()->attach(1);      // Attacher un rôle
+$user->roles()->detach(1);      // Détacher un rôle
+$user->roles()->sync([1, 2]);   // Synchroniser
+
+// Mettre à jour via relation
+$user->posts()->update(['published' => true]);
+
+// Compter les relations
+$posts_count = $user->posts()->count();
+```
+
+## Validation Avancée
+
+### Créer une FormRequest
+```bash
+php artisan make:request StoreProductRequest
+```
+
+### Règles de validation
+```php
+public function rules() {
+    return [
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email',
+        'age' => 'integer|between:18,99',
+        'password' => 'required|min:8|confirmed',
+        'image' => 'nullable|image|mimes:jpg,png|max:2048',
+        'tags' => 'array|max:5',
+        'tags.*' => 'string|distinct|min:3',
+        'terms' => 'accepted',
+    ];
+}
+
+// Messages personnalisés
+public function messages() {
+    return [
+        'name.required' => 'Le nom est obligatoire',
+        'email.unique' => 'Cet email est déjà utilisé',
+    ];
+}
+```
+
+### Validation personnalisée
+```php
+// Règle inline
+'email' => [
+    'required',
+    'email',
+    function($attribute, $value, $fail) {
+        if (!str_ends_with($value, '@company.com')) {
+            $fail('Email d\'entreprise requis');
+        }
+    },
+],
+```
+
+## Authentification & Autorisation
+
+### Installer Breeze (Recommandé)
+```bash
+php artisan breeze:install
+php artisan migrate
+npm install && npm run dev
+```
+
+### Vérifier l'authentification
+```php
+// Dans le contrôleur
+if (Auth::check()) {
+    $user = Auth::user();
+}
+
+// Dans les vues Blade
+@auth
+    <p>Bienvenue {{ Auth::user()->name }}</p>
+@endauth
+
+@guest
+    <p>Veuillez vous connecter</p>
+@endguest
+```
+
+### Policies (Autorisation)
+```bash
+php artisan make:policy PostPolicy --model=Post
+```
+
+```php
+// Policy
+public function update(User $user, Post $post) {
+    return $user->id === $post->user_id;
+}
+
+// Dans le contrôleur
+$this->authorize('update', $post);  // Lève une exception si non autorisé
+
+// Dans la vue
+@can('update', $post)
+    <a href="edit">Éditer</a>
+@endcan
+```
+
+## Testing
+
+### Créer des tests
+```bash
+php artisan make:test UserTest              # PHPUnit
+php artisan make:test UserTest --pest       # Pest (nouvelle syntaxe)
+php artisan make:test UserControllerTest --unit  # Test unitaire
+```
+
+### Tests avec Pest
+```php
+// Excellent pour les tests simples
+test('user can register', function () {
+    $response = $this->post('/register', [
+        'name' => 'John',
+        'email' => 'john@example.com',
+        'password' => 'password',
+        'password_confirmation' => 'password',
+    ]);
+    
+    $response->assertRedirect('/dashboard');
+    $this->assertDatabaseHas('users', ['email' => 'john@example.com']);
+});
+```
+
+### Tests avec PHPUnit
+```php
+public function test_product_factory() {
+    $product = Product::factory()->create(['name' => 'Test']);
+    $this->assertEquals('Test', $product->name);
+}
+
+public function test_api_returns_json() {
+    $response = $this->getJson('/api/products');
+    $response->assertOk()->assertJsonStructure(['data' => ['*' => ['id', 'name']]]);
+}
+```
+
+### Lancer les tests
+```bash
+php artisan test                       # PHPUnit
+php artisan test --pest                # Pest
+php artisan test tests/Feature         # Dossier spécifique
+php artisan test --parallel            # Tests parallélisés (plus rapide)
+```
+
 ## Commandes utiles
 
 ### Maintenance & Système

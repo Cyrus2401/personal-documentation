@@ -1,39 +1,42 @@
 # Personal Documentation
 
-Documentation personnelle et guides de référence rapide pour le développement web, DevOps et outils de développement.
+A personal documentation and quick reference guide to help efficiently store and retrieve practical knowledge, commands, and best practices during development.
 
 ## Index
 
 ### Frameworks & Backends
-- [**Laravel**](frameworks/laravel.md) - Guide Laravel complet (création, artisan, configuration)
-- [**Symfony**](frameworks/symfony.md) - Guide Symfony et workflows
+
+* [**Laravel**](frameworks/laravel.md) - Complete Laravel guide (setup, Artisan, configuration)
+* [**Symfony**](frameworks/symfony.md) - Symfony guide and workflows
 
 ### DevOps & Infrastructure
-- [**Virtual Host HTTP - Symfony**](devops/virtual-host-http-symfony.md) - Configuration Apache HTTP
-- [**Virtual Host HTTPS - Symfony**](devops/virtual-host-https-symfony.md) - Configuration Apache HTTPS avec SSL
-- [**VPS Security Checklist**](devops/vps-security-checklist.md) - Sécurité et hardening de serveur
 
-### Outils & Systèmes
-- [**Git & GitHub**](tools/git-github.md) - Contrôle de version et collaboration
-- [**Linux**](systems/linux.md) - Commandes système et administration
-- [**PHP**](systems/php.md) - Références PHP et configuration
-- [**VS Code Extensions**](tools/vs-code-extensions.md) - Extensions recommandées pour VS Code
-- [**Utilities**](tools/utilities.md) - Outils et commandes utilitaires
+* [**Virtual Host HTTP - Symfony**](devops/virtual-host-http-symfony.md) - Apache HTTP configuration
+* [**Virtual Host HTTPS - Symfony**](devops/virtual-host-https-symfony.md) - Apache HTTPS configuration with SSL
+* [**VPS Security Checklist**](devops/vps-security-checklist.md) - Server security and hardening
 
-## Utilisation
+### Tools & Systems
 
-Cette documentation est pensée comme une **base de connaissances personnelle** pour :
-- Retrouver rapidement des commandes et configurations
-- Documenter des patterns et bonnes pratiques
-- Servir de référence rapide pendant le développement
+* [**Git & GitHub**](tools/git-github.md) - Version control and collaboration
+* [**Linux**](systems/linux.md) - System commands and administration
+* [**PHP**](systems/php.md) - PHP references and configuration
+* [**VS Code Extensions**](tools/vs-code-extensions.md) - Recommended VS Code extensions
+* [**Utilities**](tools/utilities.md) - Useful tools and commands
 
-## À savoir
+## Usage
 
-- Les guides contiennent des exemples pratiques et concrets
-- N'hésite pas à mettre à jour ou ajouter des sections
-- Les chemins supposent une structure organisée en sous-dossiers
+This documentation is designed as a **personal knowledge base** for: 
+
+* Quickly retrieving commands and configurations
+* Documenting development patterns and best practices
+* Serving as a fast reference during development
+
+## Notes
+
+* Guides include practical and real-world examples
+* Feel free to update or extend sections over time
+* Paths assume an organized folder structure
 
 ## License
 
 This project is licensed under the MIT License.
-

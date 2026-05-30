@@ -174,11 +174,109 @@ php bin/console importmap:require bootstrap
 php bin/console asset-map:compile
 ```
 
+## Services et Injection de Dépendances
+
+### Créer un Service personnalisé
+```bash
+php bin/console make:class Services/EmailService
+```
+
+### Injection dans le conteneur
+```php
+// Automatique (Autowiring) - Recommandé
+public function __construct(private EmailService $emailService) {}
+
+// Configuration manuelle (services.yaml)
+services:
+    App\Services\EmailService:
+        arguments:
+            $mailer: '@mailer'
+```
+
+### Utiliser un Service dans un Contrôleur
+```php
+#[Route('/send', name: 'send_email')]
+public function send(EmailService $emailService): Response {
+    $emailService->sendWelcomeEmail('user@example.com');
+    return new Response('Email sent!');
+}
+```
+
+## Validation Avancée
+
+### Créer un Validateur personnalisé
+```bash
+php bin/console make:validator UniqueEmail
+```
+
+```php
+public function validate($value, Constraint $constraint): void {
+    if ($this->userRepository->findBy(['email' => $value])) {
+        $this->context->buildViolation('Email already exists')
+            ->addViolation();
+    }
+}
+```
+
+### Utiliser dans une Entité
+```php
+#[ORM\Column(type: 'string')]
+#[Assert\Email]
+#[Assert\NotBlank]
+private string $email;
+```
+
+## Sécurité et Authentification
+
+### Créer un User Provider
+```bash
+php bin/console make:user-provider
+```
+
+### Protéger une Route avec Roles
+```php
+#[Route('/admin', name: 'admin_dashboard')]
+#[IsGranted('ROLE_ADMIN')]
+public function dashboard(): Response {
+    return $this->render('admin/dashboard.html.twig');
+}
+```
+
+### Vérifier une Permission
+```php
+// Dans le contrôleur
+$this->denyAccessUnlessGranted('ROLE_USER');
+
+// Dans la vue Twig
+{% if is_granted('ROLE_ADMIN') %}
+    <a href="/admin">Admin</a>
+{% endif %}
+```
+
+### Créer un Voter (Autorisations Métier)
+```bash
+php bin/console make:voter PostVoter
+```
+
+```php
+public function vote(TokenInterface $token, mixed $subject, array $attributes): int {
+    if ('edit' === $attributes[0]) {
+        $post = $subject;
+        $user = $token->getUser();
+        
+        if ($user === $post->getAuthor()) {
+            return self::ACCESS_GRANTED;
+        }
+    }
+    return self::ACCESS_ABSTAIN;
+}
+```
+
 ## Bonnes pratiques
 
 *   **Injection de dépendances** : Utilisez le **Constructor Injection** et l'**Autowiring**. N'instanciez pas vos services manuellement. Typ-hintez les interfaces plutôt que les classes concrètes quand possible.
     ```php
-    public function __construct(private MailerInterface $mailer) {}
+    public function __construct(private EmailService $emailService) {}
     ```
 *   **Repositories** : Utilisez le **QueryBuilder** standard. Évitez le SQL brut sauf nécessité absolue. Isolez les requêtes DQL dans le repository, pas dans le contrôleur.
 *   **Contrôleurs** : Ils doivent rester minces. Pas de logique métier (calculs, règles complexes) dans le contrôleur. Appelez un Service pour ça.

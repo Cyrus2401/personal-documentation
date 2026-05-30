@@ -1,4 +1,6 @@
-# Extensions VS Code
+# 🔧 Extensions VS Code Essentielles
+
+## 📝 Édition & Formatage
 
 ### Auto Close Tag
 Ferme automatiquement les balises HTML/XML lorsque vous tapez la balise d'ouverture.
@@ -128,3 +130,103 @@ Fournit des raccourcis pour écrire des templates Twig.
 
 ### Twig Language 2
 Ajoute la coloration syntaxique pour les fichiers de templates Twig.
+
+## 🤖 IA & Productivité
+
+### GitHub Copilot
+Assistant IA pour compléter du code intelligemment (suggestions contextuelles).
+
+### Copilot Chat
+Intégration du chat Copilot directement dans VS Code pour poser des questions.
+
+### Code Snapshots
+Génère des snapshots de votre code pour partager facilement.
+
+## 🐛 Débogage & Tests
+
+### Postman
+Permet de tester vos APIs REST directement depuis VS Code (alternative intégrée).
+
+### Thunder Client
+Client API REST léger et rapide pour tester vos endpoints sans quitter l'éditeur.
+
+### Debug Visualizer
+Visualise les structures de données complexes lors du débogage.
+
+### Test Explorer
+Interface unifiée pour exécuter et gérer les tests (Pest, PHPUnit, Jest, etc.).
+
+## 🎨 Thèmes & UI
+
+### One Dark Pro
+Thème sombre populaire avec bonnes couleurs de syntaxe.
+
+### Dracula Official
+Thème sombre élégant basé sur le schéma Dracula.
+
+### GitHub Theme
+Thèmes légers et sombres inspirés des designs GitHub.
+
+### Peacock
+Colorise différents espaces de travail pour les différencier facilement.
+
+## 🔍 Recherche & Navigation
+
+### Bookmarks
+Ajoute des signets pour naviguer rapidement entre les points importants du code.
+
+### Peacock Navigator
+Navigation améliorée entre fichiers et symboles.
+
+### Todo Tree
+Surligne TODO, FIXME, etc. et les affiche dans une arborescence.
+
+### VSCode Great Icons
+Icônes modernes et colorées pour les fichiers (alternative à Material).
+
+## 🌐 Web & Frontend
+
+### Live Preview
+Lance une prévisualisation en temps réel de vos fichiers HTML/CSS (remplaçant Live Server).
+
+### Web Color Helper
+Affiche des aperçus de couleurs et permet les conversions (HEX, RGB, HSL).
+
+### Responsive Preview
+Prévisualise votre site en différentes résolutions d'écran.
+
+### CSS Peek
+Accéder directement au CSS d'une classe en utilisant Ctrl+Shift+F12.
+
+## 📦 Gestion des Dépendances
+
+### Version Lens
+Affiche les versions disponibles des packages dans package.json.
+
+### Dependency Analytics
+Analyse les dépendances pour détecter les vulnérabilités et mises à jour.
+
+## 🔐 Sécurité & DevOps
+
+### Secrets Safe
+Gère les secrets et empêche leur exposition accidentelle.
+
+### Code Spell Checker
+Détecte les fautes d'orthographe dans le code et les commentaires.
+
+### Trailing Spaces
+Signale et nettoie les espaces inutiles à la fin des lignes.
+
+## 💡 Utilitaires Avancés
+
+### Explorer Lite
+Explorateur de fichiers alternative plus légère.
+
+### Hex to CSS Values
+Convertit facilement les couleurs HEX en CSS.
+
+### Paste URL
+Récupère le contenu d'une URL et le colle directement (très utile pour les CDN).
+
+### REST Client
+Exécute des requêtes HTTP directement (alternative légère à Postman).\n\n## 📊 Recommandations\n\n### Stack Laravel\nRecommandé : **Laravel Artisan** + **Laravel Extra Intellisense** + **PHP Intelephense** + **Thunder Client**\n\n### Stack Symfony\nRecommandé : **Symfony for VSCode** + **Twig code snippets** + **PHP Intelephense** + **Postman**\n\n### Stack Frontend (React/Vue)\nRecommandé : **Tailwind CSS IntelliSense** + **ES6 snippets** + **Live Preview** + **Prettier**\n\n### Stack Python/Data Science\nRecommandé : **Python** (Microsoft) + **Jupyter** + **Code Runner** + **Remote SSH**

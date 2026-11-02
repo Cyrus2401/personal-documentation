@@ -1,8 +1,8 @@
-# 📘 Configuration d’un VirtualHost Apache en HTTPS pour un projet Symfony (port 9000)
+# Configuration d’un VirtualHost Apache en HTTPS pour un projet Symfony (port 9000)
 
 Cette documentation explique **pas à pas** comment configurer un **VirtualHost Apache en HTTPS** pour un projet **Symfony**, en utilisant une **adresse IP** et le **port 9000**.
 
-> 🧩 Contexte
+>  Contexte
 
 * OS : Linux (Debian / Ubuntu)
 * Serveur Web : Apache 2.4+
@@ -12,7 +12,7 @@ Cette documentation explique **pas à pas** comment configurer un **VirtualHost 
 
 ---
 
-## 📋 Prérequis
+## Prérequis
 
 * Apache installé
 * OpenSSL installé
@@ -22,7 +22,7 @@ Cette documentation explique **pas à pas** comment configurer un **VirtualHost 
 
 ---
 
-## 1️⃣ Activer les modules Apache nécessaires
+## 1⃣ Activer les modules Apache nécessaires
 
 ```bash
 sudo a2enmod ssl rewrite headers
@@ -31,7 +31,7 @@ sudo systemctl restart apache2
 
 ---
 
-## 2️⃣ Configurer Apache pour écouter le port 9000
+## 2⃣ Configurer Apache pour écouter le port 9000
 
 Éditer le fichier :
 
@@ -47,7 +47,7 @@ Listen 9000
 
 ---
 
-## 3️⃣ Créer un certificat SSL auto-signé
+## 3⃣ Créer un certificat SSL auto-signé
 
 Créer le dossier SSL :
 
@@ -64,7 +64,7 @@ sudo openssl req -x509 -nodes -days 365 \
 -out /etc/apache2/ssl/symfony.crt
 ```
 
-### ⚠️ Important
+### Important
 
 Lors de la question **Common Name (CN)**, mettre **exactement l’IP du serveur** :
 
@@ -74,7 +74,7 @@ Lors de la question **Common Name (CN)**, mettre **exactement l’IP du serveur*
 
 ---
 
-## 4️⃣ Créer le VirtualHost HTTPS
+## 4⃣ Créer le VirtualHost HTTPS
 
 Créer le fichier de configuration :
 
@@ -119,7 +119,7 @@ sudo nano /etc/apache2/sites-available/symfony-9000-https.conf
 
 ---
 
-## 5️⃣ Vérifier les droits du projet Symfony
+## 5⃣ Vérifier les droits du projet Symfony
 
 ```bash
 sudo chown -R www-data:www-data /var/www/html/FLASH/eQRCode
@@ -128,7 +128,7 @@ sudo chmod -R 755 /var/www/html/FLASH/eQRCode
 
 ---
 
-## 6️⃣ Activer le site
+## 6⃣ Activer le site
 
 ```bash
 sudo a2ensite symfony-9000-https.conf
@@ -137,7 +137,7 @@ sudo systemctl reload apache2
 
 ---
 
-## 7️⃣ Définir le ServerName global (évite les warnings)
+## 7⃣ Définir le ServerName global (évite les warnings)
 
 ```bash
 sudo nano /etc/apache2/apache2.conf
@@ -157,7 +157,7 @@ sudo systemctl restart apache2
 
 ---
 
-## 8️⃣ Ouvrir le port 9000 dans le firewall
+## 8⃣ Ouvrir le port 9000 dans le firewall
 
 ### Avec UFW
 
@@ -168,7 +168,7 @@ sudo ufw reload
 
 ---
 
-## 9️⃣ Vérifications
+## 9⃣ Vérifications
 
 ### Tester la configuration Apache
 
@@ -190,7 +190,7 @@ sudo ss -tulpn | grep 9000
 
 ---
 
-## 🔐 Accès à l’application
+## Accès à l’application
 
 Dans le navigateur :
 
@@ -198,11 +198,11 @@ Dans le navigateur :
 https://185.238.1.103:9000
 ```
 
-> ⚠️ Une alerte de sécurité est normale (certificat auto-signé)
+>  Une alerte de sécurité est normale (certificat auto-signé)
 
 ---
 
-## 🧠 Bonnes pratiques Symfony
+## Bonnes pratiques Symfony
 
 * Toujours pointer le `DocumentRoot` vers `/public`
 * Désactiver `MultiViews`
@@ -221,13 +221,13 @@ php bin/console cache:clear --env=prod
 
 ---
 
-## ✅ Résumé
+## Résumé
 
-* ✔ Apache configuré en HTTPS
-* ✔ Port 9000 fonctionnel
-* ✔ Certificat SSL valide pour l’IP
-* ✔ Symfony accessible en HTTPS
+*  Apache configuré en HTTPS
+*  Port 9000 fonctionnel
+*  Certificat SSL valide pour l’IP
+*  Symfony accessible en HTTPS
 
 ---
 
-✍️ *Documentation rédigée pour usage personnel et déploiement Symfony*
+ *Documentation rédigée pour usage personnel et déploiement Symfony*

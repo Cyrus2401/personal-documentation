@@ -7,10 +7,12 @@
 - [Compression et Archives](#compression-et-archives)
 - [Téléchargement et Transfert](#téléchargement-et-transfert)
 - [Système et Réseau](#système-et-réseau)
-- [Gestion des Processus](#gestion-des-processus)
 - [Utilitaires et Informations Système](#utilitaires-et-informations-système)
 - [Astuces et Personnalisation](#astuces-et-personnalisation)
+- [Gestion des Processus](#gestion-des-processus)
 - [Recherche de Fichiers](#recherche-de-fichiers)
+- [Gestion des Disques et du Stockage](#gestion-des-disques-et-du-stockage)
+- [Commandes Avancées & Réseau](#commandes-avancées--réseau)
 
 ## Navigation et Gestion des Fichiers
 
@@ -327,7 +329,7 @@ systemctl enable service       # Active au démarrage
 systemctl disable service      # Désactive au démarrage
 ```
 
-## Astuces et Personnalisation
+## Astuces et Personnalisation — Variables, Redirections & Paquets
 
 ### Variables d'environnement
 ```bash

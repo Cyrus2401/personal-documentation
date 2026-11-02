@@ -1,5 +1,7 @@
 # Guide Symfony : Référence Rapide
 
+> Versions couvertes : **Symfony 7.4 (LTS)** recommandée en production ; **8.1** (stable, PHP ≥ 8.4) pour les nouveaux projets. Symfony 7.4 requiert PHP ≥ 8.2.
+
 ## Création de projet : webapp & api
 
 ### Création de projet
@@ -9,6 +11,11 @@ curl -sS https://get.symfony.com/cli/installer | bash
 
 # Créer une application Web complète (MVC, Twig, Doctrine, etc.)
 symfony new nom-projet --webapp
+
+# Épingler une version précise (ex. LTS 7.4 en production)
+symfony new nom-projet --webapp --version=7.4
+symfony new nom-projet --version=7.4
+composer create-project symfony/skeleton nom-projet "7.4.*"
 
 # Créer un micro-service ou API (Minimal)
 symfony new nom-projet

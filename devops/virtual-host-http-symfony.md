@@ -1,8 +1,8 @@
-# 📗 Configuration d'un VirtualHost Apache en HTTP pour un projet Symfony (port 9000)
+# Configuration d'un VirtualHost Apache en HTTP pour un projet Symfony (port 9000)
 
 Cette documentation explique **pas à pas** comment configurer un **VirtualHost Apache en HTTP** pour un projet **Symfony**, en utilisant une **adresse IP** et le **port 9000**.
 
-> 🧩 Contexte
+>  Contexte
 
 * OS : Linux (Debian / Ubuntu)
 * Serveur Web : Apache 2.4+
@@ -12,16 +12,16 @@ Cette documentation explique **pas à pas** comment configurer un **VirtualHost 
 
 ---
 
-## 📋 Prérequis
+## Prérequis
 
-* Apache installé 
+* Apache installé
 * Accès root ou sudo
 * Projet Symfony déjà déployé sur le serveur
 * Le port `9000` doit être libre
 
 ---
 
-## 1️⃣ Activer les modules Apache nécessaires
+## 1⃣ Activer les modules Apache nécessaires
 ```bash
 sudo a2enmod rewrite headers
 sudo systemctl restart apache2
@@ -29,7 +29,7 @@ sudo systemctl restart apache2
 
 ---
 
-## 2️⃣ Configurer Apache pour écouter le port 9000
+## 2⃣ Configurer Apache pour écouter le port 9000
 
 Éditer le fichier :
 ```bash
@@ -48,7 +48,7 @@ sudo systemctl restart apache2
 
 ---
 
-## 3️⃣ Créer le VirtualHost HTTP
+## 3⃣ Créer le VirtualHost HTTP
 
 Créer le fichier de configuration :
 ```bash
@@ -87,7 +87,7 @@ sudo nano /etc/apache2/sites-available/symfony-9000-http.conf
 
 ---
 
-## 4️⃣ Vérifier les droits du projet Symfony
+## 4⃣ Vérifier les droits du projet Symfony
 ```bash
 sudo chown -R www-data:www-data /var/www/html/FLASH/eQRCode
 sudo chmod -R 755 /var/www/html/FLASH/eQRCode
@@ -100,7 +100,7 @@ sudo chmod -R 775 /var/www/html/FLASH/eQRCode/var
 
 ---
 
-## 5️⃣ Activer le site
+## 5⃣ Activer le site
 ```bash
 sudo a2ensite symfony-9000-http.conf
 sudo systemctl reload apache2
@@ -108,7 +108,7 @@ sudo systemctl reload apache2
 
 ---
 
-## 6️⃣ Définir le ServerName global (évite les warnings)
+## 6⃣ Définir le ServerName global (évite les warnings)
 ```bash
 sudo nano /etc/apache2/apache2.conf
 ```
@@ -125,7 +125,7 @@ sudo systemctl restart apache2
 
 ---
 
-## 7️⃣ Ouvrir le port 9000 dans le firewall
+## 7⃣ Ouvrir le port 9000 dans le firewall
 
 ### Avec UFW
 ```bash
@@ -141,7 +141,7 @@ sudo iptables-save
 
 ---
 
-## 8️⃣ Vérifications
+## 8⃣ Vérifications
 
 ### Tester la configuration Apache
 ```bash
@@ -171,7 +171,7 @@ sudo tail -f /var/log/apache2/symfony_9000_access.log
 
 ---
 
-## 🌐 Accès à l'application
+## Accès à l'application
 
 Dans le navigateur :
 ```
@@ -184,7 +184,7 @@ Vous devriez voir :
 
 ---
 
-## 🧠 Bonnes pratiques Symfony
+## Bonnes pratiques Symfony
 
 ### 1. Pointer le DocumentRoot vers `/public`
 
@@ -221,4 +221,4 @@ php bin/console debug:router
 
 ---
 
-✍️ *Documentation rédigée pour usage personnel et déploiement Symfony*
+ *Documentation rédigée pour usage personnel et déploiement Symfony*

@@ -29,3 +29,15 @@ build/
 *.bak
 *.backup
 .cache/
+
+# Databases
+*.sql
+*.sql.gz
+*.dump
+*.db
+*.sqlite
+*.sqlite3
+
+# Office / exports (décommenter si besoin)
+# *.pdf
+# *.zip

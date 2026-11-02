@@ -8,12 +8,11 @@
 - [Extensions de Session et Cache](#extensions-de-session-et-cache)
 - [Extensions pour Frameworks](#extensions-pour-frameworks)
 - [Extensions de Développement](#extensions-de-développement)
-- [Extensions de Chiffrement](#extensions-de-chiffrement)
-- [Extensions pour API](#extensions-pour-api)
-- [Extensions de Performance](#extensions-de-performance)
-- [Autres Extensions Utiles](#autres-extensions-utiles)
-- [Installation](#installation)
+- [Installation Complète](#installation-complète)
 - [Cas d'Usage Spécifiques](#cas-dusage-spécifiques)
+- [Bonnes Pratiques](#bonnes-pratiques)
+- [Dépannage Courant](#dépannage-courant)
+- [Écosystème Modern & Outils](#écosystème-modern--outils)
 
 ## Extensions de Base
 
@@ -180,31 +179,36 @@ xdebug.start_with_request = yes
 ## Installation Complète
 
 ### Ubuntu/Debian
+
+Sous Debian 12/13, les paquets `php-*` pointent vers la version par défaut du dépôt (Debian 12 → PHP 8.2, Debian 13 → PHP 8.4). C'est ce que fait `setup-debian-devstack.sh`.
+
 ```bash
-sudo apt install php8.2 \
-    php8.2-cli \
-    php8.2-fpm \
-    php8.2-common \
-    php8.2-curl \
-    php8.2-json \
-    php8.2-mbstring \
-    php8.2-opcache \
-    php8.2-xml \
-    php8.2-zip \
-    php8.2-mysql \
-    php8.2-pgsql \
-    php8.2-sqlite3 \
-    php8.2-intl \
-    php8.2-gd \
-    php8.2-redis \
-    php8.2-imagick \
-    php8.2-ldap \
-    php8.2-bcmath \
-    php8.2-soap \
-    php8.2-ctype \
-    php8.2-tokenizer \
-    php8.2-dom \
-    php8.2-fileinfo
+# Version par défaut du dépôt (recommandé)
+sudo apt install php php-cli php-fpm php-common php-opcache \
+    php-curl php-json php-mbstring php-xml php-zip \
+    php-mysql php-pgsql php-sqlite3 \
+    php-intl php-gd php-imagick php-ldap php-bcmath php-soap \
+    php-ctype php-tokenizer php-dom php-fileinfo
+```
+
+Pour une version précise (ex. PHP 8.3) avec le dépôt tiers Sury :
+```bash
+sudo apt install -y apt-transport-https lsb-release ca-certificates curl
+sudo curl -sSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.org/php/apt.gpg
+echo "deb [signed-by=/usr/share/keyrings/deb.sury.org-php.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" \
+    | sudo tee /etc/apt/sources.list.d/sury-php.list
+sudo apt update
+sudo apt install php8.3-cli php8.3-fpm php8.3-mysql php8.3-mbstring php8.3-xml php8.3-curl php8.3-zip
+
+# Basculer la version active (alternatives)
+sudo update-alternatives --set php /usr/bin/php8.3
+sudo a2dismod php8.2 && sudo a2enmod php8.3 && sudo systemctl restart apache2 php8.3-fpm
+```
+
+> Le service `php-fpm` ne s'appelle pas `php8.2-fpm` mais `phpX.Y-fpm` — vérifier avec `systemctl list-units 'php*'`.
+
+```bash
+sudo systemctl restart php-fpm   # si la version par défaut
 ```
 
 ### Vérification des extensions
@@ -266,17 +270,21 @@ opcache.enable_cli=1
 ## Dépannage Courant
 
 ```bash
+# Version active de PHP (et donc de PHP-FPM)
+php -v && php -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;'
+
 # Vérifier le statut de PHP-FPM
-systemctl status php8.2-fpm
+systemctl status php-fpm                      # version par défaut
+systemctl status php8.2-fpm                   # version explicite (remplacer 8.2)
 
 # Vérifier les logs PHP
-tail -f /var/log/php8.2-fpm.log
+tail -f /var/log/php8.2-fpm.log               # remplacer 8.2 par la version active
 
 # Tester la configuration PHP-FPM
-php-fpm8.2 -t
+php-fpm8.2 -t                                 # remplacer 8.2 par la version active
 
 # Redémarrer PHP-FPM
-systemctl restart php8.2-fpm
+systemctl restart php-fpm
 ```
 
 ## Écosystème Modern & Outils
@@ -327,7 +335,7 @@ vendor/bin/php-cs-fixer fix src/
 # PHPStan / Psalm : Analyse statique (trouve les bugs sans exécuter le code)
 vendor/bin/phpstan analyse src/ --level=max
 
-# Rector : Mise à jour automatique de votre code (ex: upgrade PHP 7.4 -> 8.2)
+# Rector : Mise à jour automatique de votre code (ex: upgrade PHP 7.4 -> 8.4)
 vendor/bin/rector process src/
 ```
 

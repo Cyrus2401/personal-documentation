@@ -24,6 +24,7 @@ A personal documentation and quick reference guide to help efficiently store and
 * [**VS Code Extensions**](tools/vs-code-extensions.md) - Recommended VS Code extensions
 * [**Utilities**](tools/utilities.md) - Useful tools and commands
 * [**Skills & Tools**](tools/skills.md) - Full inventory of agent skills and MCP tools
+* [**MemPalace**](tools/mempalace.md) - Long-term AI memory and multi-agent hub (Antigravity & OpenCode)
 
 ### Scripts
 

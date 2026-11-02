@@ -110,6 +110,16 @@ Inventaire complet des capacités de l'agent : outils (outils natifs, MCP, navig
 - `models` : rechercher un modèle disponible.
 - `list_mcp_resources`, `read_mcp_resource` : ressources exposées par les serveurs MCP.
 
+### 2.8 `mempalace` — mémoire persistante et hub multi-agents (47 outils)
+
+- **Palais & Recherche** : `mempalace_search`, `mempalace_status`, `mempalace_list_wings`, `mempalace_list_rooms`, `mempalace_get_taxonomy`, `mempalace_check_duplicate`, `mempalace_get_aaak_spec`.
+- **Tiroirs (Drawers)** : `mempalace_add_drawer`, `mempalace_get_drawer`, `mempalace_list_drawers`, `mempalace_update_drawer`, `mempalace_delete_drawer`.
+- **Graphe de Connaissances (KG)** : `mempalace_kg_query`, `mempalace_kg_add`, `mempalace_kg_invalidate`, `mempalace_kg_supersede`, `mempalace_kg_timeline`, `mempalace_kg_stats`.
+- **Navigation & Tunnels** : `mempalace_traverse`, `mempalace_find_tunnels`, `mempalace_graph_stats`, `mempalace_create_tunnel`, `mempalace_list_tunnels`, `mempalace_delete_tunnel`, `mempalace_follow_tunnels`.
+- **Journal d'Agent (Diary)** : `mempalace_diary_write`, `mempalace_diary_read`.
+- **Logstream & Coordination inter-agents** : `event_append`, `event_wait`, `event_list`, `event_ack`, `artifact_put`, `artifact_get`, `patch_submit`, `mempalace_task_create`, `mempalace_task_launch`.
+- **Système** : `mempalace_hook_settings`, `mempalace_memories_filed_away`, `mempalace_reconnect`.
+
 ---
 
 ## 3. Skills
@@ -312,6 +322,11 @@ Inventaire complet des capacités de l'agent : outils (outils natifs, MCP, navig
 - `deploy-to-vercel` — déployer sur Vercel.
 - `vercel-cli-with-tokens` — Vercel CLI via token.
 - `vercel-optimize` — réduire coûts/performances sur Vercel.
+
+### 3.16 MemPalace & Mémoire IA
+- `mempalace` — gestion du palais : initialisation, minage, statut, configuration et coordination.
+- `mempalace-recall` — protocole de rappel et recherche sémantique systématique avant de répondre.
+- `mempalace-task` — création, délégation, réclamation et suivi de tâches asynchrones entre agents via le logstream.
 
 ---
 

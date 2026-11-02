@@ -1,6 +1,6 @@
-# 🔧 Extensions VS Code Essentielles
+# Extensions VS Code Essentielles
 
-## 📝 Édition & Formatage
+## Édition & Formatage
 
 ### Auto Close Tag
 Ferme automatiquement les balises HTML/XML lorsque vous tapez la balise d'ouverture.
@@ -8,11 +8,11 @@ Ferme automatiquement les balises HTML/XML lorsque vous tapez la balise d'ouvert
 ### Auto Rename Tag
 Renomme automatiquement la balise de fermeture quand vous modifiez la balise d'ouverture.
 
-### Better Comments
-Colore les commentaires selon leur type (TODO, FIXME, etc.) pour mieux les repérer.
-
 ### Bracket Pair Color
-Attribue une couleur différente à chaque niveau de parenthèses et crochets.
+Attribue une couleur différente à chaque niveau de parenthèses et crochets. _Fonction désormais native dans VS Code (`editor.bracketPairColorization`)._
+
+### Better Comments
+Colore les commentaires selon leur type (TODO, FIXME, etc.) pour mieux les repérer. _(Non maintenue ; concurrence active : Comment Anchors / Todo Tree.)_
 
 ### CodeSnap
 Crée de belles captures d'écran de votre code avec coloration syntaxique.
@@ -83,20 +83,20 @@ Remplace les icônes par défaut par des icônes Material Design plus modernes.
 ### Path Intellisense
 Complète automatiquement les chemins de fichiers lors de l'importation.
 
-### PHP Debug
-Permet de déboguer du code PHP avec des points d'arrêt et l'inspection de variables.
-
-### PHP Extension Pack
-Regroupe plusieurs extensions essentielles pour le développement PHP.
-
 ### PHP Intelephense
-Fournit une autocomplétion avancée et une navigation intelligente pour PHP.
+Fournit une autocomplétion avancée et une navigation intelligente pour PHP. **À utiliser seul** : ne pas l'installer en même temps que *PHP IntelliSense* (conflit de suggestions).
 
 ### PHP IntelliSense
-Offre une aide à la saisie et des suggestions pour le code PHP.
+Offre une aide à la saisie et des suggestions pour le code PHP. _Legacy : préférer Intelephense._
 
 ### PHP Namespace Resolver
-Importe et résout automatiquement les namespaces PHP.
+Importe et résout automatiquement les namespaces PHP. _En maintenance ; alternative intégrée à Intelephense._
+
+### PHP Extension Pack
+Regroupe plusieurs extensions essentielles pour le développement PHP. _Depuis VS Code 1.86, le support PHP/PHP Debug est natif : pack souvent redondant._
+
+### PHP Debug
+Permet de déboguer du code PHP avec des points d'arrêt et l'inspection de variables. Peut être remplacé par **Xdebug** natif de VS Code (`launch.json`).
 
 ### PostgreSQL
 Ajoute des outils pour travailler avec la base de données PostgreSQL.
@@ -131,7 +131,7 @@ Fournit des raccourcis pour écrire des templates Twig.
 ### Twig Language 2
 Ajoute la coloration syntaxique pour les fichiers de templates Twig.
 
-## 🤖 IA & Productivité
+## IA & Productivité
 
 ### GitHub Copilot
 Assistant IA pour compléter du code intelligemment (suggestions contextuelles).
@@ -139,10 +139,16 @@ Assistant IA pour compléter du code intelligemment (suggestions contextuelles).
 ### Copilot Chat
 Intégration du chat Copilot directement dans VS Code pour poser des questions.
 
+### Claude Code for VS Code
+Agent IA (Anthropic) intégré dans l'éditeur : édition multi-fichiers, commandes, revue de code. Alternative/complément à Copilot.
+
+### Continue
+Assistant IA open source, connectable à n'importe quel modèle (local via Ollama, API distante).
+
 ### Code Snapshots
 Génère des snapshots de votre code pour partager facilement.
 
-## 🐛 Débogage & Tests
+## Débogage & Tests
 
 ### Postman
 Permet de tester vos APIs REST directement depuis VS Code (alternative intégrée).
@@ -156,7 +162,7 @@ Visualise les structures de données complexes lors du débogage.
 ### Test Explorer
 Interface unifiée pour exécuter et gérer les tests (Pest, PHPUnit, Jest, etc.).
 
-## 🎨 Thèmes & UI
+## Thèmes & UI
 
 ### One Dark Pro
 Thème sombre populaire avec bonnes couleurs de syntaxe.
@@ -170,7 +176,7 @@ Thèmes légers et sombres inspirés des designs GitHub.
 ### Peacock
 Colorise différents espaces de travail pour les différencier facilement.
 
-## 🔍 Recherche & Navigation
+## Recherche & Navigation
 
 ### Bookmarks
 Ajoute des signets pour naviguer rapidement entre les points importants du code.
@@ -184,7 +190,7 @@ Surligne TODO, FIXME, etc. et les affiche dans une arborescence.
 ### VSCode Great Icons
 Icônes modernes et colorées pour les fichiers (alternative à Material).
 
-## 🌐 Web & Frontend
+## Web & Frontend
 
 ### Live Preview
 Lance une prévisualisation en temps réel de vos fichiers HTML/CSS (remplaçant Live Server).
@@ -198,7 +204,7 @@ Prévisualise votre site en différentes résolutions d'écran.
 ### CSS Peek
 Accéder directement au CSS d'une classe en utilisant Ctrl+Shift+F12.
 
-## 📦 Gestion des Dépendances
+## Gestion des Dépendances
 
 ### Version Lens
 Affiche les versions disponibles des packages dans package.json.
@@ -206,7 +212,7 @@ Affiche les versions disponibles des packages dans package.json.
 ### Dependency Analytics
 Analyse les dépendances pour détecter les vulnérabilités et mises à jour.
 
-## 🔐 Sécurité & DevOps
+## Sécurité & DevOps
 
 ### Secrets Safe
 Gère les secrets et empêche leur exposition accidentelle.
@@ -217,7 +223,7 @@ Détecte les fautes d'orthographe dans le code et les commentaires.
 ### Trailing Spaces
 Signale et nettoie les espaces inutiles à la fin des lignes.
 
-## 💡 Utilitaires Avancés
+## Utilitaires Avancés
 
 ### Explorer Lite
 Explorateur de fichiers alternative plus légère.
@@ -229,4 +235,24 @@ Convertit facilement les couleurs HEX en CSS.
 Récupère le contenu d'une URL et le colle directement (très utile pour les CDN).
 
 ### REST Client
-Exécute des requêtes HTTP directement (alternative légère à Postman).\n\n## 📊 Recommandations\n\n### Stack Laravel\nRecommandé : **Laravel Artisan** + **Laravel Extra Intellisense** + **PHP Intelephense** + **Thunder Client**\n\n### Stack Symfony\nRecommandé : **Symfony for VSCode** + **Twig code snippets** + **PHP Intelephense** + **Postman**\n\n### Stack Frontend (React/Vue)\nRecommandé : **Tailwind CSS IntelliSense** + **ES6 snippets** + **Live Preview** + **Prettier**\n\n### Stack Python/Data Science\nRecommandé : **Python** (Microsoft) + **Jupyter** + **Code Runner** + **Remote SSH**
+Exécute des requêtes HTTP directement (alternative légère à Postman).
+
+## Recommandations
+
+### Stack Laravel
+Recommandé : **Laravel Artisan** + **Laravel Extra Intellisense** + **PHP Intelephense** + **Thunder Client**
+
+### Stack Symfony
+Recommandé : **Symfony for VSCode** + **Twig code snippets** + **PHP Intelephense** + **Postman**
+
+### Stack Frontend (React/Vue)
+Recommandé : **Tailwind CSS IntelliSense** + **ES6 snippets** + **Live Preview** + **Prettier**
+
+### Stack Python/Data Science
+Recommandé : **Python** (Microsoft) + **Jupyter** + **Code Runner** + **Remote SSH**
+
+## À privilégier / À éviter
+
+Fonctionnalités natives de VS Code (extension inutile) : `Bracket Pair Color`, coloration des `<>` HTML, formatage JS/TS, tasks, terminal.
+
+Extensions peu maintenues ou redondantes : `Better Comments`, `PHP IntelliSense`, `PHP Extension Pack`, `Explorer Lite`, `Code Snapshots`. Vérifier la date de dernière mise à jour et le nombre d'installations sur le Marketplace avant d'en ajouter une.

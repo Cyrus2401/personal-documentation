@@ -1,5 +1,7 @@
 # Guide Laravel : Référence Rapide
 
+> Versions couvertes : **Laravel 11 et 12** (PHP ≥ 8.2). Laravel 12 sort en février 2025 ; le squelette reste identique sur les points ci-dessous (pas de `routes/api.php` par défaut, `php artisan install:api`).
+
 ## Création de projet : webapp & api
 
 ### Création de projet
@@ -11,9 +13,12 @@ composer create-project laravel/laravel nom-projet
 # Via l'installateur global Laravel (Alternative plus rapide)
 laravel new nom-projet
 
-# Installation spécifique pour API (Laravel 11+)
-# Laravel est "API ready" par défaut, mais pour installer les fichiers de route API :
+# Installation spécifique pour API (Laravel 11+ et 12)
+# Laravel est "API ready" par défaut, mais pour installer routes/api.php + Sanctum :
 php artisan install:api
+
+# Vérifier la version du squelette installé
+php artisan --version
 
 # Installation des dépendances après un clonage Git
 composer install

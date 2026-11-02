@@ -20,8 +20,19 @@ A personal documentation and quick reference guide to help efficiently store and
 * [**Git & GitHub**](tools/git-github.md) - Version control and collaboration
 * [**Linux**](systems/linux.md) - System commands and administration
 * [**PHP**](systems/php.md) - PHP references and configuration
+* [**Databases**](systems/databases.md) - MariaDB & PostgreSQL (install, users, dump/restore)
 * [**VS Code Extensions**](tools/vs-code-extensions.md) - Recommended VS Code extensions
 * [**Utilities**](tools/utilities.md) - Useful tools and commands
+* [**Skills & Tools**](tools/skills.md) - Full inventory of agent skills and MCP tools
+
+### Scripts
+
+* [**debian-system-update.sh**](debian-system-update.sh) - System update (apt update, full-upgrade, autoremove, autoclean). Run: `sudo ./debian-system-update.sh`
+* [**setup-debian-devstack.sh**](setup-debian-devstack.sh) - Debian 11/12/13 devstack: Apache, MariaDB, PostgreSQL, PHP, Composer, Adminer, Node.js, Git, UFW, self-signed SSL. Run: `sudo ./setup-debian-devstack.sh`
+
+### Guides (PDF)
+
+* [**Guide Serveur Git**](Guide-Serveur-Git.pdf) - Git server setup guide
 
 ## Usage
 

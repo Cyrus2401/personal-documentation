@@ -1,4 +1,4 @@
-# Guide Complet Git & GitHub 🚀
+# Guide Complet Git & GitHub
 
 ## Table des matières
 - [Introduction à Git & GitHub](#introduction-à-git--github)
@@ -8,6 +8,7 @@
 - [Workflows Git](#workflows-git)
 - [Collaboration](#collaboration)
 - [Correction des Erreurs](#correction-des-erreurs)
+- [Réécriture d'Historique](#réécriture-dhistorique)
 - [Configuration SSH](#configuration-ssh)
 - [Commandes Avancées](#commandes-avancées)
 - [Bonnes Pratiques](#bonnes-pratiques)
@@ -16,9 +17,9 @@
 
 ### Qu'est-ce que Git ?
 Git est un système de contrôle de version décentralisé qui offre trois fonctionnalités principales :
-- ✨ Restauration de versions antérieures du code
-- 📝 Suivi détaillé de l'évolution du code
-- 👥 Collaboration sans conflit entre développeurs
+-  Restauration de versions antérieures du code
+-  Suivi détaillé de l'évolution du code
+-  Collaboration sans conflit entre développeurs
 
 ### Git vs GitHub
 - **Git** : Système de gestion de versions local
@@ -36,11 +37,11 @@ Git est un système de contrôle de version décentralisé qui offre trois fonct
 - **Repository** : Base de données Git où sont stockés les commits
 
 ### Avantages des Dépôts
-- 📊 Historique complet du projet
-- 👥 Facilitation du travail en équipe
-- 🌐 Participation aux projets open source
-- 🔍 Traçabilité des modifications
-- 📝 Documentation des changements
+-  Historique complet du projet
+-  Facilitation du travail en équipe
+-  Participation aux projets open source
+-  Traçabilité des modifications
+-  Documentation des changements
 
 ## Commandes Essentielles
 
@@ -52,6 +53,31 @@ git config --global user.email "votre.email@exemple.com"
 
 # Configurer l'éditeur par défaut
 git config --global core.editor "code"  # Pour VS Code
+
+# Renommer la branche par défaut en main (Git 2.28+)
+git config --global init.defaultBranch main
+
+# Voir la configuration active
+git config --list --show-origin
+```
+
+### Dépôts Distants (Remotes)
+```bash
+git remote -v                                   # Lister les remotes
+git remote add origin git@github.com:user/repo.git
+git remote set-url origin git@github.com:user/repo.git
+git remote remove origin
+git branch --set-upstream-to=origin/main        # Suivre une branche distante
+```
+
+### Fichiers Ignorés (`.gitignore`)
+```bash
+# Modèles utiles : https://github.com/github/gitignore
+echo "node_modules/" >> .gitignore
+echo "*.pdf" >> .gitignore
+
+git rm --cached fichier            # Retirer du suivi sans supprimer du disque
+git check-ignore -v fichier        # Pourquoi un fichier est ignoré
 ```
 
 ### Initialisation et Configuration
@@ -228,6 +254,26 @@ git reset --mixed    # Conserve les fichiers modifiés
 git reset --soft     # Conserve tout en mémoire
 ```
 
+## Réécriture d'Historique
+
+Rebase interactif (réordonner, fusionner, reformuler, supprimer des commits en local) :
+```bash
+git rebase -i HEAD~3              # Les 3 derniers commits
+# Dans l'éditeur : pick, reword, squash, fixup, drop
+
+git rebase --continue             # Après résolution d'un conflit
+git rebase --abort                # Tout annuler
+```
+
+> N'utilise jamais `rebase`/`reset --hard` sur une branche déjà poussée et partagée : utilise `revert`.
+
+Cherry-pick, bisect et worktree :
+```bash
+git cherry-pick <sha>             # Appliquer un commit d'une autre branche
+git bisect start && git bisect bad HEAD && git bisect good <sha>   # Trouver le commit fautif
+git worktree add ../mon-projet-fix fix-bug   # Travailler sur 2 branches en parallèle
+```
+
 ## Configuration SSH
 
 ### Création et Installation d'une Clé SSH
@@ -299,18 +345,18 @@ Add user authentication feature
 ```
 
 ### Organisation du Travail
-- 🔄 Faire des commits atomiques (une modification = un commit)
-- 📝 Écrire des messages de commit descriptifs
-- 🔍 Vérifier régulièrement `git status` et `git diff`
-- 🌿 Créer une branche par fonctionnalité
-- 📊 Maintenir un historique propre
-- 🔒 Ne jamais modifier l'historique public
-- 📚 Documenter les changements importants
+-  Faire des commits atomiques (une modification = un commit)
+-  Écrire des messages de commit descriptifs
+-  Vérifier régulièrement `git status` et `git diff`
+-  Créer une branche par fonctionnalité
+-  Maintenir un historique propre
+-  Ne jamais modifier l'historique public
+-  Documenter les changements importants
 
 ## Notes Importantes
-- 🔄 `git reset` revient à l'état précédent sans créer de commit
-- ➕ `git revert` crée un nouveau commit d'annulation
-- 💡 Pensez à faire régulièrement des commits avec des messages clairs
-- 🔍 Utilisez `git status` fréquemment pour vérifier l'état de votre dépôt
-- ⚠️ Faites toujours un backup avant les opérations délicates
-- 🔒 Ne stockez jamais de secrets dans Git
+-  `git reset` revient à l'état précédent sans créer de commit
+-  `git revert` crée un nouveau commit d'annulation
+-  Pensez à faire régulièrement des commits avec des messages clairs
+-  Utilisez `git status` fréquemment pour vérifier l'état de votre dépôt
+-  Faites toujours un backup avant les opérations délicates
+-  Ne stockez jamais de secrets dans Git

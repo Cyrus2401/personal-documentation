@@ -1,4 +1,4 @@
-# 🔐 Sécurisation d’un VPS (Checklist simple)
+# Sécurisation d’un VPS (Checklist simple)
 
 ## 1. Mettre à jour le système
 

@@ -4,7 +4,7 @@ Inventaire complet des capacités de l'agent : outils (outils natifs, MCP, navig
 
 > **Skill** = instructions spécialisées chargées dans le contexte à la demande (`skill(id)`), pas du code exécutable.
 > **Tool** = fonction appelable par l'agent (dans Code Mode : via `execute` vers `tools.<namespace>.<nom>()`).
-> **Liste figée au 2026-11-02.** À régénérer quand les serveurs MCP ou les skills installés changent.
+> **Liste figée au 2026-11-02** (révision : ajout du serveur `mempalace`). À régénérer quand les serveurs MCP ou les skills installés changent.
 
 ---
 
@@ -103,7 +103,18 @@ Inventaire complet des capacités de l'agent : outils (outils natifs, MCP, navig
 - `ssh_network` : équipements réseau (Cisco, MikroTik, FortiGate, Juniper).
 - `ssh_tunnel` : port-forwarding TCP et proxy SOCKS5.
 
-### 2.7 `opencode` — gestion d'OpenCode
+### 2.7 `mempalace` — mémoire persistante et hub multi-agents (47 outils)
+
+- **Recherche & indexation** : `mempalace_search` (souvenirs des sessions passées), `mempalace_mine` (indexer un répertoire), `mempalace_sync` (purger les sources disparues), `mempalace_check_duplicate`, `mempalace_checkpoint` (sauver une session), `mempalace_memories_filed_away`.
+- **Tiroirs (drawers)** : `mempalace_add_drawer`, `mempalace_get_drawer`, `mempalace_get_drawers`, `mempalace_list_drawers`, `mempalace_update_drawer`, `mempalace_delete_drawer`, `mempalace_delete_drawers`, `mempalace_delete_by_source`.
+- **Taxonomie & navigation** : `mempalace_status`, `mempalace_get_taxonomy`, `mempalace_list_wings`, `mempalace_list_rooms`, `mempalace_graph_stats`, `mempalace_list_hallways`, `mempalace_delete_hallway`.
+- **Tunnels (liens inter-wings)** : `mempalace_create_tunnel`, `mempalace_list_tunnels`, `mempalace_delete_tunnel`, `mempalace_find_tunnels`, `mempalace_follow_tunnels`, `mempalace_traverse`.
+- **Graphe de connaissances (KG)** : `mempalace_kg_add`, `mempalace_kg_query`, `mempalace_kg_stats`, `mempalace_kg_invalidate`, `mempalace_kg_supersede`, `mempalace_kg_timeline`.
+- **Journal d'agent (diary)** : `mempalace_diary_write`, `mempalace_diary_read`, `mempalace_get_aaak_spec` (format AAAK).
+- **Logstream & coordination** : `mempalace_event_append`, `mempalace_event_list`, `mempalace_event_wait`, `mempalace_event_ack`, `mempalace_artifact_put`, `mempalace_artifact_get`, `mempalace_patch_submit`, `mempalace_task_create`.
+- **Système** : `mempalace_hook_settings`, `mempalace_reconnect`, `mempalace_mesh_peers`.
+
+### 2.8 `opencode` — gestion d'OpenCode
 
 - `session_rename`, `session_move` : renommer / déplacer une session.
 - `worktree_create`, `worktree_list`, `worktree_remove` : worktrees git.
@@ -312,6 +323,11 @@ Inventaire complet des capacités de l'agent : outils (outils natifs, MCP, navig
 - `deploy-to-vercel` — déployer sur Vercel.
 - `vercel-cli-with-tokens` — Vercel CLI via token.
 - `vercel-optimize` — réduire coûts/performances sur Vercel.
+
+### 3.16 MemPalace & Mémoire IA
+- `mempalace` — gestion du palais : initialisation, minage, statut, configuration et coordination.
+- `mempalace-recall` — protocole de rappel et recherche sémantique systématique avant de répondre.
+- `mempalace-task` — création, délégation, réclamation et suivi de tâches asynchrones entre agents via le logstream.
 
 ---
 
